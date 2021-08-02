@@ -8,20 +8,24 @@
 
 (def base-url "http://localhost:3000/api/")
 
+(defn as-json
+  [body]
+  (json/parse-string body true))
+
 (deftest get-episode-data
   (testing "that episode data is fetched properly"
     (let [n 1
           {:keys [status body]} (client/get (str base-url "episodes/" n))
-          {:keys [number]} (json/parse-string body true)]
+          {:keys [number]} (as-json body)]
       (is (= 200 status))
       (is (= n number)))))
 
 (deftest save-episode-data
   (testing "that episode data is saved properly"
-    (let [n 1
-          {:keys [status body]} (client/post (str base-url "episodes")
-                                             {:form-params {:number 1}
-                                              :content-type :json})
-          {:keys [number]} (json/parse-string body true)]
+    (let [n   1
+          url (str base-url "episodes")
+          {:keys [status body]} (client/post url {:form-params  {:number 1}
+                                                  :content-type :json})
+          {:keys [number]} (as-json body)]
       (is (= 200 status))
       (is (= n number)))))
