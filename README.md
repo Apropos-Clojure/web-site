@@ -1,3 +1,7 @@
+[![CI-Test](https://github.com/Apropos-Clojure/web-site/actions/workflows/ci.yml/badge.svg)](https://github.com/Apropos-Clojure/web-site/actions/workflows/ci.yml)
+
+[![CI-Lint](https://github.com/Apropos-Clojure/web-site/actions/workflows/lint.yml/badge.svg)](https://github.com/Apropos-Clojure/web-site/actions/workflows/lint.yml)
+
 # Apropos Web Site
 
 ## Basic Requirements:
