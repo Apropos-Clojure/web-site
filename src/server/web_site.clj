@@ -42,7 +42,7 @@
                                            (assoc {:status 200} :body)))}}]
      ["/:number"
       {:swagger {:tags ["episodes"]}
-       :get     {:summary    "Fetch data for the episode"
+       :get     {:summary    "Fetch data for the specific episode number"
                  :parameters {:path [:map [:number int?]]}
                  :responses  {200 {:body [:map [:number int?]]}}
                  :handler    (fn [request]
