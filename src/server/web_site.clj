@@ -37,7 +37,7 @@
                     :parameters {:body [:map [:number int?]]}
                     :responses  {200 {:body [:map [:number int?]]}}
                     :handler    (fn [request]
-                                  (some->> (get-in request [:parameters :path])
+                                  (some->> (get-in request [:parameters :body])
                                            (save-episode-data)
                                            (assoc {:status 200} :body)))}}]
      ["/:number"

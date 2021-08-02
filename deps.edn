@@ -12,6 +12,7 @@
  :aliases
  {:test      {:extra-paths ["test"]
               :extra-deps  {clj-http/clj-http {:mvn/version "3.12.3"}
+                            cheshire/cheshire {:mvn/version "5.10.0"}
                             com.cognitect/test-runner
                                               {:git/url "https://github.com/cognitect-labs/test-runner.git"
                                                :sha     "8c3f22363d63715de4087b038d79ae0de36a3263"}}
@@ -21,7 +22,8 @@
   :clj-kondo {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}
               :main-opts  ["-m" "clj-kondo.main"]}
 
-  :repl      {:main-opts ["-r"]}
+  :repl      {:extra-paths ["test" "dev"]
+              :main-opts   ["-r"]}
 
   :server    {:jvm-opts  ["-Dclojure.main.report=stderr"]
               :main-opts ["-m" "server.web-site"]}}}
