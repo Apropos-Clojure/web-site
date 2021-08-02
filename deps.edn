@@ -18,11 +18,11 @@
               :jvm-opts    ["-Dclojure.main.report=stderr"]
               :main-opts   ["-m" "cognitect.test-runner"]}
 
-  :clj-kondo {:extra-deps {clj-kondo {:mvn/version "RELEASE"}}
+  :clj-kondo {:extra-deps {clj-kondo/clj-kondo {:mvn/version "RELEASE"}}
               :main-opts  ["-m" "clj-kondo.main"]}
 
   :repl      {:main-opts ["-r"]}
 
   :server    {:jvm-opts  ["-Dclojure.main.report=stderr"]
-              :main-opts ["-m" "repl.repl.http"]}}}
+              :main-opts ["-m" "server.web-site"]}}}
 
