@@ -6,7 +6,7 @@
 
 (use-fixtures :each fixtures/web-server)
 
-(def base-url "http://localhost:3000/api/")
+(def base-url "http://localhost:3001/api/")
 
 (defn as-json
   [body]

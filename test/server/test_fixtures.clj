@@ -3,6 +3,6 @@
   (:import (org.eclipse.jetty.server Server)))
 
 (defn web-server [f]
-  (let [server ^Server (server/start 3000)]
+  (let [server ^Server (server/start 3001)]
     (f)
     (.stop server)))

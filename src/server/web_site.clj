@@ -38,26 +38,38 @@
                     :tags [{:name "episodes", :description "episodes api"}]}
           :handler (swagger/create-swagger-handler)}}])
 
+(defn handle-save-request
+  [request]
+  (some->> (get-in request [:parameters :body])
+           save-episode-data
+           (assoc {:status 200} :body)))
+
+(defn handle-read-request
+  [request]
+  (some->> (get-in request [:parameters :path])
+           episode-data
+           (assoc {:status 200} :body)))
+
+(def read-response [:map
+                    [:number int?]
+                    [:hosts string?]])
+
+(def save-response [:map [:number int?]])
+
 (def api-route
   ["/api"
    ["/episodes"
     ["" {:swagger {:tags ["episodes"]}
-         :post    {:summary    "Persist data for the episode"
+         :post    {:summary    "Save data for the episode"
                    :parameters {:body [:map [:number int?]]}
-                   :responses  {200 {:body [:map [:number int?]]}}
-                   :handler    (fn [request]
-                                 (some->> (get-in request [:parameters :body])
-                                          (save-episode-data)
-                                          (assoc {:status 200} :body)))}}]
+                   :responses  {200 {:body save-response}}
+                   :handler    handle-save-request}}]
     ["/:number"
      {:swagger {:tags ["episodes"]}
       :get     {:summary    "Fetch data for the specific episode number"
                 :parameters {:path [:map [:number int?]]}
-                :responses  {200 {:body [:map [:number int?]]}}
-                :handler    (fn [request]
-                              (some->> (get-in request [:parameters :path])
-                                       episode-data
-                                       (assoc {:status 200} :body)))}}]]])
+                :responses  {200 {:body read-response}}
+                :handler    handle-read-request}}]]])
 
 (def app
   (ring/ring-handler
