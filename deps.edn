@@ -13,7 +13,7 @@
   metosin/reitit              {:mvn/version "0.5.13"}}
 
  :aliases
- {:test      {:extra-paths ["test"]
+ {:test      {:extra-paths ["test" "test-resources"]
               :extra-deps  {clj-http/clj-http {:mvn/version "3.12.3"}
                             cheshire/cheshire {:mvn/version "5.10.0"}
                             com.cognitect/test-runner

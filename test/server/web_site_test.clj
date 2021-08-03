@@ -14,7 +14,7 @@
 
 (deftest get-episode-data
   (testing "that episode data is fetched properly"
-    (let [n 1
+    (let [n 42
           {:keys [status body]} (client/get (str base-url "episodes/" n))
           {:keys [number]} (as-json body)]
       (is (= 200 status))
