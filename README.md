@@ -31,9 +31,14 @@ Dynamic content debate:
 - overall more code but with fewer external tools and dependencies
 - high control but more effort to create and manage
 
-We prefer dynamic content in this case.
+Mixed content debate (per Eric's suggestion):
+- content created per update on master branch in the resources folder
+- no site security needed, rely on GitHub organization controls
+- content read from the CLASSPATH and rendered on-demand
 
-Why? It means that we build more features with Clojure.
+We prefer mixed content in this case.
+
+Why? It means that we have simple maintenance but can build more features with Clojure.
 
 This option feels appropriate for Apropos as a vehicle for discussing how to make / do things in Clojure.
 
