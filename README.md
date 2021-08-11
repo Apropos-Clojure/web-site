@@ -31,7 +31,7 @@ Dynamic content debate:
 - overall more code but with fewer external tools and dependencies
 - high control but more effort to create and manage
 
-Mixed content debate:
+Mixed content debate (per Eric's suggestion):
 - content created per update on master branch in the resources folder
 - no site security needed, rely on GitHub organization controls
 - content read from the CLASSPATH and rendered on-demand
