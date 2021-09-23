@@ -1,2 +1,5 @@
-{:number 42
+{:title "Web site demo 42"
+ :description "Show notes gist URL"
+ :recording-date "1-Jan-2020"
+ :video-id "foo-001"
  :hosts  "Eric, Mia, Mike and Ray"}

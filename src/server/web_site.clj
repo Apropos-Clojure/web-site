@@ -42,18 +42,12 @@
           :handler (swagger/create-swagger-handler)}}])
 
 (defn handle-save-request
-  [request]
-  (some->> (get-in request [:parameters :body])
-           save-episode-data
-           (assoc {:status 200} :body)))
+  [{:keys [parameters]}]
+  (some->> parameters :body save-episode-data (assoc {:status 200} :body)))
 
 (defn handle-read-request
-  [request]
-  (let [result (some->> (get-in request [:parameters :path])
-                        episode-data
-                        (assoc {:status 200} :body))]
-    (println result)
-    result))
+  [{:keys [parameters]}]
+  (some->> parameters :path episode-data (assoc {:status 200} :body)))
 
 (def read-response [:map
                     [:number int?]
