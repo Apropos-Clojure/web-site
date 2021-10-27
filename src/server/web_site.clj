@@ -11,7 +11,9 @@
     [reitit.swagger-ui :as swagger-ui]
     [reitit.ring.middleware.muuntaja :as muuntaja]
     [reitit.ring.middleware.parameters :as parameters]
-    [ring.adapter.jetty :as jetty]))
+    [ring.adapter.jetty :as jetty]
+    [clojure.string :as string])
+  (:import (java.io File)))
 
 (set! *warn-on-reflection* true)
 
@@ -19,6 +21,19 @@
   [file-name]
   (try
     (some-> file-name io/resource io/as-file slurp read-string)
+    (catch Exception _)))
+
+(defn list-episode-ids
+  [dir-name]
+  (try
+    (some->> dir-name io/resource io/as-file file-seq
+             (keep (fn [^File f]
+                     (when (.isFile f)
+                       (-> f
+                           (.getName)
+                           (string/replace #"\.edn$" "")
+                           Integer/parseInt))))
+             sort)
     (catch Exception _)))
 
 (defn save-episode-data
@@ -49,10 +64,26 @@
   [{:keys [parameters]}]
   (some->> parameters :path episode-data (assoc {:status 200} :body)))
 
-(def read-response [:map
-                    [:number int?]
-                    [:title string?]
-                    [:hosts string?]])
+(defn handle-all-episodes-request
+  [_]
+  (some->> (list-episode-ids "episodes")
+           (map #(assoc {} :number %))
+           (map episode-data)
+           (hash-map :episodes)
+           (hash-map :status 200 :body)))
+
+
+(def read-response
+  [:map
+   [:number int?]
+   [:description string?]
+   [:title string?]
+   [:video-id string?]
+   [:recording-date string?]
+   [:hosts string?]])
+
+(def all-episodes-response
+  [:map [:episodes [:vector read-response]]])
 
 (def save-response [:map [:number int?]])
 
@@ -64,9 +95,9 @@
                    :parameters {:body [:map [:number int?]]}
                    :responses  {200 {:body save-response}}
                    :handler    handle-save-request}
-         :get     {:summary    "List all episodes"
-                   :responses  {200 {:body save-response}}
-                   :handler    handle-save-request}}]
+         :get     {:summary   "List all episodes"
+                   :responses {200 {:body all-episodes-response}}
+                   :handler   handle-all-episodes-request}}]
     ["/:number"
      {:swagger {:tags ["episodes"]}
       :get     {:summary    "Fetch data for the specific episode number"
