@@ -12,7 +12,8 @@
     [reitit.ring.middleware.muuntaja :as muuntaja]
     [reitit.ring.middleware.parameters :as parameters]
     [ring.adapter.jetty :as jetty]
-    [clojure.string :as string])
+    [clojure.string :as string]
+    [hiccup.core :as h])
   (:import (java.io File)))
 
 (set! *warn-on-reflection* true)
@@ -91,10 +92,6 @@
   ["/api"
    ["/episodes"
     ["" {:swagger {:tags ["episodes"]}
-         :post    {:summary    "Save data for the episode"
-                   :parameters {:body [:map [:number int?]]}
-                   :responses  {200 {:body save-response}}
-                   :handler    handle-save-request}
          :get     {:summary   "List all episodes"
                    :responses {200 {:body all-episodes-response}}
                    :handler   handle-all-episodes-request}}]
@@ -104,6 +101,22 @@
                 :parameters {:path [:map [:number int?]]}
                 :responses  {200 {:body read-response}}
                 :handler    handle-read-request}}]]])
+
+(defn handle-homepage [req]
+  {:status 200
+   :body (h/html
+          [:head
+           [:title "Apropos"]]
+          [:body
+                  [:img {:src "/images/apropro.png"}]
+                  [:div "Apropro"]])
+   :headers {}})
+
+(def pages-route
+  [["/" {:get {:summary "Homepage"
+               :responses {200 {:body :string}}
+               :handler handle-homepage}}]
+   ["/images/*" (ring/create-resource-handler {:path "/"})]])
 
 (def router-config
   {:validate rs/validate
@@ -118,9 +131,9 @@
 
 (def app
   (ring/ring-handler
-    (ring/router [swagger-route api-route] router-config)
+    (ring/router [pages-route swagger-route api-route] router-config)
     (ring/routes (swagger-ui/create-swagger-ui-handler
-                   {:path   "/"
+                   {:path   "/swagger"
                     :config {:validatorUrl     nil
                              :operationsSorter "alpha"}})
                  (ring/create-default-handler))))
