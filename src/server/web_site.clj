@@ -13,7 +13,8 @@
     [reitit.ring.middleware.parameters :as parameters]
     [ring.adapter.jetty :as jetty]
     [clojure.string :as string]
-    [hiccup.core :as h])
+    [hiccup.core :as h]
+    [hiccup.page :as page])
   (:import (java.io File)))
 
 (set! *warn-on-reflection* true)
@@ -65,11 +66,14 @@
   [{:keys [parameters]}]
   (some->> parameters :path episode-data (assoc {:status 200} :body)))
 
-(defn handle-all-episodes-request
-  [_]
+(defn list-episodes []
   (some->> (list-episode-ids "episodes")
            (map #(assoc {} :number %))
-           (map episode-data)
+           (map episode-data)))
+
+(defn handle-all-episodes-request
+  [_]
+  (some->> (list-episodes)
            (hash-map :episodes)
            (hash-map :status 200 :body)))
 
@@ -104,18 +108,73 @@
 
 (defn handle-homepage [req]
   {:status 200
-   :body (h/html
+   :body (page/html5
+          {:lang "en"}
           [:head
-           [:title "Apropos"]]
+           [:title "Apropos"]
+           [:link {:rel "stylesheet"
+                   :href "https://unpkg.com/sakura.css/css/sakura.css"
+                   :type "text/css"}]
+           ]
           [:body
-                  [:img {:src "/images/apropro.png"}]
-                  [:div "Apropro"]])
+           [:img {:src "/images/apropro.png" :alt "Apropro" :title "Apropro"}]
+           [:h1 {:style "text-align: center"}
+            [:a {:href "/"} "Apropos"]]
+           [:h2 "Episodes"]
+           (let [episodes (reverse (list-episodes))
+                 recent (first episodes)
+                 others (rest episodes)]
+             [:div
+              [:h3 [:a {:href (str "/episode/" (:number recent))}
+                    (:title recent) " " (:recording-date recent)]
+               [:div
+                (vimeo-embed (:video-id recent))]]
+              (for [episode others]
+                [:h3 [:a {:href (str "/episode/" (:number episode))}
+                      (:title episode) " " (:recording-date episode)]])])])
    :headers {}})
+
+(defn vimeo-embed [id]
+  (h/html
+   (if (nil? id)
+     [:div "Video coming soon."]
+     [:iframe
+      {:src (str "https://player.vimeo.com/video/" id)
+       :width 640
+       :height 360
+       :frameborder 0
+       :allow "autoplay; fullscreen; picture-in-picture"
+       :allowfullscreen true}])))
+
+(defn handle-episode-page [req]
+  (let [preq (with-out-str (clojure.pprint/pprint req))
+        episode-id (:episode-id (:path-params req))
+        episode (episode-data {:number episode-id})]
+    {:status 200
+     :body (page/html5
+            {:lang "en"}
+            [:head
+             [:title "Apropos"]
+             [:link {:rel "stylesheet"
+                   :href "https://unpkg.com/sakura.css/css/sakura.css"
+                   :type "text/css"}]]
+            [:body
+             [:img {:src "/images/apropro.png" :alt "Apropro" :title "Apropro"}]
+             [:h1 [:a {:href "/"} "Apropos"]]
+             [:h2 (:title episode)]
+             [:div (:recording-date episode)]
+             [:div (:hosts episode)]
+             [:div (:description episode)]
+             [:div (vimeo-embed (:video-id episode))]])
+     :headers {}}))
 
 (def pages-route
   [["/" {:get {:summary "Homepage"
                :responses {200 {:body :string}}
                :handler handle-homepage}}]
+   ["/episode/:episode-id" {:get {:summary "Single episode"
+                                  :responses {200 {:body :string}}
+                                  :handler handle-episode-page}}]
    ["/images/*" (ring/create-resource-handler {:path "/"})]])
 
 (def router-config
