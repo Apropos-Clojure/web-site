@@ -1,6 +1,7 @@
 (ns server.web-site
   (:require
-    [clojure.java.io :as io]
+   [clojure.java.io :as io]
+   [clojure.pprint :as pprint :refer [pprint]]
     [muuntaja.core :as m]
     [reitit.ring :as ring]
     [reitit.coercion.malli :as rcm]
@@ -106,7 +107,19 @@
                 :responses  {200 {:body read-response}}
                 :handler    handle-read-request}}]]])
 
-(defn handle-homepage [req]
+(defn vimeo-embed [id]
+  (h/html
+   (if (nil? id)
+     [:div "Video coming soon."]
+     [:iframe
+      {:src (str "https://player.vimeo.com/video/" id)
+       :width 640
+       :height 360
+       :frameborder 0
+       :allow "autoplay; fullscreen; picture-in-picture"
+       :allowfullscreen true}])))
+
+(defn handle-homepage [_req]
   {:status 200
    :body (page/html5
           {:lang "en"}
@@ -134,20 +147,8 @@
                       (:title episode) " " (:recording-date episode)]])])])
    :headers {}})
 
-(defn vimeo-embed [id]
-  (h/html
-   (if (nil? id)
-     [:div "Video coming soon."]
-     [:iframe
-      {:src (str "https://player.vimeo.com/video/" id)
-       :width 640
-       :height 360
-       :frameborder 0
-       :allow "autoplay; fullscreen; picture-in-picture"
-       :allowfullscreen true}])))
-
 (defn handle-episode-page [req]
-  (let [preq (with-out-str (clojure.pprint/pprint req))
+  (let [_preq (with-out-str (pprint req))
         episode-id (:episode-id (:path-params req))
         episode (episode-data {:number episode-id})]
     {:status 200

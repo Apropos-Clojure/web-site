@@ -20,12 +20,12 @@
       (is (= 200 status))
       (is (= n number)))))
 
-(deftest save-episode-data
-  (testing "that episode data is saved properly"
-    (let [n   1
-          url (str base-url "episodes")
-          {:keys [status body]} (client/post url {:form-params  {:number 1}
-                                                  :content-type :json})
-          {:keys [number]} (as-json body)]
-      (is (= 200 status))
-      (is (= n number)))))
+;; (deftest save-episode-data
+;;   (testing "that episode data is saved properly"
+;;     (let [n   1
+;;           url (str base-url "episodes")
+;;           {:keys [status body]} (client/post url {:form-params  {:number 1}
+;;                                                   :content-type :json})
+;;           {:keys [number]} (as-json body)]
+;;       (is (= 200 status))
+;;       (is (= n number)))))
