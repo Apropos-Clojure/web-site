@@ -1,0 +1,6 @@
+{:title "Apropos Clojure #4 - repl prepl",
+ :description
+ "Topics: The new REPL guide | PREPL in 1.10 | Throw away code",
+ :video-id "575890682",
+ :recording-date #inst "2018-03-28T05:00:00.000-00:00",
+ :hosts "Eric, Mia, Mike, and Ray"}

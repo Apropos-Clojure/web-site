@@ -1,0 +1,6 @@
+{:title "Apropos Clojure #18 - contributing to CLJS and REPtiLe",
+ :description
+ "A discussion about contributing to CLJS - the good, bad and ugly\n\nA coding session using REPtiLe. Reptiles like bugs and there were a few on display.\n\nIf you want to run REPtiLe yourself or contribute, the repos are at\nhttps://github.com/raymcdermott/reptile-tail (server)\nhttps://github.com/raymcdermott/reptile-tongue (browser UI)",
+ :video-id "575922094",
+ :recording-date #inst "2018-09-20T05:00:00.000-00:00",
+ :hosts "Eric, Mia, Mike, and Ray"}

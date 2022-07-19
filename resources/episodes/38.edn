@@ -1,0 +1,6 @@
+{:title "Apropos",
+ :description
+ "Show notes: https://gist.github.com/apropos-cast/3e2d9cde0a249e456acad252c3f4556a\n\nClojure discussion and some of that good, good live coding about",
+ :video-id "575896848",
+ :recording-date #inst "2020-06-11T05:00:00.000-00:00",
+ :hosts "Eric, Mia, Mike, and Ray"}

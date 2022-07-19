@@ -1,0 +1,350 @@
+[
+  {
+    "vimeoId": "575906881",
+    "title": "Apropos Clojure #1 - we welcome our new cli overlords",
+    "description": "Discussion: Hello! | cljs.main & CLI options | Twitter @apropos_cast",
+    "date": "20180301"
+  },
+  {
+    "vimeoId": "575903360",
+    "title": "Apropos Clojure #2 cljs 1.10",
+    "description": "Discussion: the CLJS 1.10 release heats up",
+    "date": "20180308"
+  },
+  {
+    "vimeoId": "575891353",
+    "title": "Apropos Clojure #3 cljs macros",
+    "description": "Discussion: Clojurescript macros",
+    "date": "20180315"
+  },
+  {
+    "vimeoId": "575890682",
+    "title": "Apropos Clojure #4 - repl prepl",
+    "description": "Topics: The new REPL guide | PREPL in 1.10 | Throw away code",
+    "date": "20180328"
+  },
+  {
+    "vimeoId": "575901428",
+    "title": "Apropos Clojure #5 - component",
+    "description": "Discussion: Who's using and loving \"component\" systems?",
+    "date": "20180405"
+  },
+  {
+    "vimeoId": "575884126",
+    "title": "Apropos Clojure #6 - quality tabs and spaces",
+    "description": "Discussion: Code quality - let the tab / space war commence",
+    "date": "20180412"
+  },
+  {
+    "vimeoId": "575906521",
+    "title": "Apropos Clojure #7 - exciting tests",
+    "description": "Discussion: Testing, according to the panel, is very exciting",
+    "date": "20180418"
+  },
+  {
+    "vimeoId": "575907285",
+    "title": "Apropos Clojure #8 - spec",
+    "description": "Discussion: usage contexts for spec",
+    "date": "20180426"
+  },
+  {
+    "vimeoId": "575899563",
+    "title": "Apropos Clojure #9 - Grrrr graalvm",
+    "description": "Discussion: GraalVM | Why Clojure? | The Lispy snake, Grace",
+    "date": "20180503"
+  },
+  {
+    "vimeoId": "575897217",
+    "title": "Apropos Clojure #10 - shadow-cljs",
+    "description": "shadow-cljs and add-lib plus a reptile demo",
+    "date": "20180515"
+  },
+  {
+    "vimeoId": "575901059",
+    "title": "Apropos Clojure #11 - who cares about performance?",
+    "description": "performance - who cares? And a more mature but not yet a fully grown reptile",
+    "date": "20180531"
+  },
+  {
+    "vimeoId": "575902539",
+    "title": "Apropos Clojure #12 - shy community?",
+    "description": "We harsh on everyone, then Eric writes eval - so there is one good thing! Next time, we will have more positive Clojure tech chat.",
+    "date": "20180614"
+  },
+  {
+    "vimeoId": "575900222",
+    "title": "Apropos Clojure #13 - ions in the garden of deps.edn",
+    "description": "Datomic ions and adopting deps.edn",
+    "date": "20180628"
+  },
+  {
+    "vimeoId": "575921516",
+    "title": "Apropos Clojure #14 - with @arrdem",
+    "description": null,
+    "date": "20180712"
+  },
+  {
+    "vimeoId": "575895329",
+    "title": "Apropos Clojure #15 - precious onyx is bought and arrays are being circled",
+    "description": null,
+    "date": "20180809"
+  },
+  {
+    "vimeoId": "575894287",
+    "title": "Apropos Clojure #16 - imperative vs functional",
+    "description": null,
+    "date": "20180823"
+  },
+  {
+    "vimeoId": "575905803",
+    "title": "Apropos Clojure #17 - Funding open source and the onward march of deps.edn",
+    "description": null,
+    "date": "20180906"
+  },
+  {
+    "vimeoId": "575922094",
+    "title": "Apropos Clojure #18 - contributing to CLJS and REPtiLe",
+    "description": "A discussion about contributing to CLJS - the good, bad and ugly\n\nA coding session using REPtiLe. Reptiles like bugs and there were a few on display.\n\nIf you want to run REPtiLe yourself or contribute, the repos are at\nhttps://github.com/raymcdermott/reptile-tail (server)\nhttps://github.com/raymcdermott/reptile-tongue (browser UI)",
+    "date": "20180920"
+  },
+  {
+    "vimeoId": "575904744",
+    "title": "Apropos Clojure #19 - core.async",
+    "description": "Sadly REPtiLe craps the bed this week. \n\nIt will be cleaned up before it's next public outing and ready to bask once more in the sunshine of our love.",
+    "date": "20181004"
+  },
+  {
+    "vimeoId": "575897588",
+    "title": "Apropos Clojure #20 - With Stu Halloway",
+    "description": "Error messages are becoming briefer but Stu is not (yet at least) willing to commit to the term \"beginner friendly\"",
+    "date": "20181018"
+  },
+  {
+    "vimeoId": "575898916",
+    "title": "Apropos Clojure #21",
+    "description": null,
+    "date": "20181108"
+  },
+  {
+    "vimeoId": "575905106",
+    "title": "Apropos the Conj",
+    "description": "Mia and Reid will be joining live from the Conj !",
+    "date": "20181129"
+  },
+  {
+    "vimeoId": "575896178",
+    "title": "Apropos Clojure #23",
+    "description": null,
+    "date": "20181213"
+  },
+  {
+    "vimeoId": "575893160",
+    "title": "Apropos Clojure #24",
+    "description": "https://gist.github.com/apropos-cast/abf8b64452ae0ae56cafa333c1eaf4e8",
+    "date": "20190117"
+  },
+  {
+    "vimeoId": "575899887",
+    "title": "Apropos Clojure #25",
+    "description": "Show notes are here: https://gist.github.com/apropos-cast/946199b99ffefbca670e77205945c701",
+    "date": "20190207"
+  },
+  {
+    "vimeoId": "575903713",
+    "title": "Apropos Clojure #26",
+    "description": "Show notes are here: https://gist.github.com/apropos-cast/4d21ae67d7ce425d78e03dc0ef08730f",
+    "date": "20190314"
+  },
+  {
+    "vimeoId": "575904396",
+    "title": "Apropos Clojure #27",
+    "description": "Show notes: https://gist.github.com/apropos-cast/6463ecaf19ac2f619409875f8ef04c86",
+    "date": "20190328"
+  },
+  {
+    "vimeoId": "575890303",
+    "title": "Apropos Clojure #28",
+    "description": "Apropos notes:\nhttps://gist.github.com/apropos-cast/9cd1ad4d700ce18172a73a7937533cdd",
+    "date": "20190411"
+  },
+  {
+    "vimeoId": "575898244",
+    "title": "Apropos Clojure #29",
+    "description": "https://gist.github.com/apropos-cast/a8b7ef4ad0e9cba04dd5039d5f4181f6",
+    "date": "20190425"
+  },
+  {
+    "vimeoId": "575904050",
+    "title": "Apropos Clojure #30",
+    "description": null,
+    "date": "20190530"
+  },
+  {
+    "vimeoId": "575891051",
+    "title": "Apropos #30",
+    "description": "Show notes: https://gist.github.com/apropos-cast/c0694ef1fc64f74233b39581bc31d8a1",
+    "date": "20190711"
+  },
+  {
+    "vimeoId": "575900605",
+    "title": "Apropos Clojure #31",
+    "description": null,
+    "date": "20190829"
+  },
+  {
+    "vimeoId": "575902162",
+    "title": "Apropos Clojure #32",
+    "description": "Welcome!\n\nShow notes: https://gist.github.com/apropos-cast/4489e393e3b29fb586ee494f65b7ce45",
+    "date": "20191003"
+  },
+  {
+    "vimeoId": "575902908",
+    "title": "Apropos 02-20-2020",
+    "description": "Show notes: https://gist.github.com/apropos-cast/20f98c68dc404be01522a9c4eedf1319\n\nClojure discussion and some of that good, good live coding about",
+    "date": "20200220"
+  },
+  {
+    "vimeoId": "575905442",
+    "title": "Apropos",
+    "description": "Show notes: https://gist.github.com/apropos-cast/59def1ac23269257985d738eef78fc7e",
+    "date": "20200611"
+  },
+  {
+    "vimeoId": "575898542",
+    "title": "Apropos",
+    "description": "Show notes: https://gist.github.com/apropos-cast/3cb0fbd934826cc0b97b9204cd57fb43\n\nClojure discussion and some of that good, good live coding about",
+    "date": "20200611"
+  },
+  {
+    "vimeoId": "575897928",
+    "title": "Apropos",
+    "description": "Clojure discussion and some of that good, good live coding about",
+    "date": "20200611"
+  },
+  {
+    "vimeoId": "575896848",
+    "title": "Apropos",
+    "description": "Show notes: https://gist.github.com/apropos-cast/3e2d9cde0a249e456acad252c3f4556a\n\nClojure discussion and some of that good, good live coding about",
+    "date": "20200611"
+  },
+  {
+    "vimeoId": "575896511",
+    "title": "Apropos",
+    "description": "Show notes: https://gist.github.com/apropos-cast/841959661e1a295e7516f8bf822cb22a\n\nClojure discussion and some of that good, good live coding about",
+    "date": "20200611"
+  },
+  {
+    "vimeoId": "575893927",
+    "title": "Apropos",
+    "description": "Show notes: https://gist.github.com/apropos-cast/3e2d9cde0a249e456acad252c3f4556a\n\nClojure discussion and some of that good, good live coding about",
+    "date": "20200611"
+  },
+  {
+    "vimeoId": "575893568",
+    "title": "Apropos",
+    "description": "Clojure discussion and some of that good, good live coding about",
+    "date": "20200611"
+  },
+  {
+    "vimeoId": "575892815",
+    "title": "Apropos",
+    "description": "- Transducers for cleaner code\n- Extending clojure.java.io/copy\n- Regal regular expression lib https://github.com/lambdaisland/regal",
+    "date": "20200611"
+  },
+  {
+    "vimeoId": "575892112",
+    "title": "Apropos",
+    "description": null,
+    "date": "20200611"
+  },
+  {
+    "vimeoId": "575891682",
+    "title": "Apropos",
+    "description": "Show notes: https://gist.github.com/apropos-cast/25cbac6de07e6dfe983b20d73382b626\nNew Twitter: https://twitter.com/AproposClj",
+    "date": "20200611"
+  },
+  {
+    "vimeoId": "575894640",
+    "title": "Apropos 30 Sep",
+    "description": "- News: a quick chat about Reveal. Check it out at https://vlaaad.github.io/reveal/\n- REPL session: A game tree for tic-tac-toe. Eric did a great job despite the heckling :)\n- This was our first experiment with Discord, it was good and we will get better and smoother with it as we learn!\n- Finally, thanks for tipping us over the 1k subscribers this month!!\n\nTo join the Discord server, here is an invite that is good for the first 25 to get on board:\nhttps://discord.gg/hgxAyQaeuX",
+    "date": "20201001"
+  },
+  {
+    "vimeoId": "575899238",
+    "title": "Apropos 14 October 2020",
+    "description": "Demo of Portal by the author Chris Badahdah (https://github.com/djblue) with appropriate grillings and homework from the panel :)\n\nIt's a really great way to explore data that was previously inaccessible. It's in the same space as Reveal and the closed source REBL from the company formerly known as Cognitect.\n\nIt was streamed live on the Apropos discord server which is open to all.\n\nHere is an invite to make it super easy!\nhttps://discord.gg/hgxAyQaeuX",
+    "date": "20201015"
+  },
+  {
+    "vimeoId": "575901829",
+    "title": "Apropos 11 Nov 2020",
+    "description": "A chatty episode about moving fast (and slow) and breaking things as well as the glorious Malli",
+    "date": "20201112"
+  },
+  {
+    "vimeoId": "575895806",
+    "title": "Apropos Jan 13 2021",
+    "description": "Panel: Mia, Mike, Eric\n\nSubscribe to our channel for more shows!\n\nShow notes: https://gist.github.com/apropos-cast/538f852645c611252d06d71c3bd1a012\n\nDiscord - Join if you want to watch us live or chat! https://discord.com/invite/hGNnK8N\n\nFollow us on Twitter for updates - https://twitter.com/AproposClj",
+    "date": "20210113"
+  },
+  {
+    "vimeoId": "575921195",
+    "title": "Apropos March 10 2021",
+    "description": "Panel: Mia, Mike, Ray, Eric\n\nSubscribe to our channel for more shows!\n\nShow notes: https://gist.github.com/apropos-cast/810beaf9353e014de339172c9bda0444\n\nDiscord - Join if you want to watch us live or chat! https://discord.com/invite/hGNnK8N\u200b\n\nFollow us on Twitter for updates - https://twitter.com/AproposClj",
+    "date": "20210315"
+  },
+  {
+    "vimeoId": "575894983",
+    "title": "Apropos March 24 2021",
+    "description": "Panel: Mia, Mike, Ray, Eric\n\nSubscribe to our channel for more shows!\n\nShow notes: https://gist.github.com/apropos-cast/5de2afc9bf059fce479dce406561621b\n\nDiscord - Join if you want to watch us live or chat! https://discord.gg/hgxAyQaeuX \n\nFollow us on Twitter for updates - https://twitter.com/AproposClj\u200b",
+    "date": "20210327"
+  },
+  {
+    "vimeoId": "575889928",
+    "title": "Apropos April 28, 2021",
+    "description": "Panel: Mia, Mike, Ray, Eric\n\nSubscribe to our channel for more shows!\n\nShow notes: https://gist.github.com/apropos-cast/46a3c5a3562f4edba178ae8ef2639d1e\n\nDiscord - Join if you want to watch us live or chat! https://discord.gg/hgxAyQaeuX\n\nFollow us on Twitter for updates - https://twitter.com/AproposClj\u200b",
+    "date": "20210429"
+  },
+  {
+    "vimeoId": "575906168",
+    "title": "Apropos June 9, 2021",
+    "description": "Panel: Mia, Mike, Ray, Eric plus special guest Martin Kavalar\n\nSubscribe to our channel for more shows!\n\nShow notes: https://gist.github.com/apropos-cast/c4d51dc9955b702db17f1ec1d18f1741\n\nDiscord - Join if you want to watch us live or chat! https://discord.gg/hgxAyQaeuX\n\nFollow us on Twitter for updates - https://twitter.com/AproposClj\u200b",
+    "date": "20210612"
+  },
+  {
+    "vimeoId": "575892464",
+    "title": "Apropos June 30, 2021",
+    "description": "Panel: Mia, Mike, Ray, Eric\n\nSubscribe to our channel for more shows!\n\nShow notes: https://gist.github.com/apropos-cast/e27e737752bd21f73092e757476e72fd\n\nDiscord - Join if you want to watch us live or chat! https://discord.gg/hgxAyQaeuX\n\nFollow us on Twitter for updates - https://twitter.com/AproposClj\u200b",
+    "date": "20210630"
+  },
+  {
+    "vimeoId": "585335551",
+    "title": "Apropos July 28, 2021",
+    "description": "Panel: Mike, Ray, Eric\n\nGuests: Michiel and Adrian\n\nShow notes: https://gist.github.com/ericnormand/aefbaace9b3731b26dd4dff770565271\n\nDiscord - Join if you want to watch us live or chat! https://discord.gg/hgxAyQaeuX\n\nFollow us on Twitter for updates - https://twitter.com/AproposClj\u200b",
+    "date": "20210729"
+  },
+  {
+    "vimeoId": "586847976",
+    "title": "Apropos August 11, 2021",
+    "description": "Panel: Mia, Mike, Ray, Eric\n\nShow notes: https://gist.github.com/ericnormand/f4b6ff995671d027efe8fb323e58af45\n\nDiscord - Join if you want to watch us live or chat! https://discord.gg/hgxAyQaeuX\n\nFollow us on Twitter for updates - https://twitter.com/AproposClj\u200b",
+    "date": "20210811"
+  },
+  {
+    "vimeoId": "614678799",
+    "title": "Apropos September 22, 2021",
+    "description": "Panel: Mia, Ray, Eric\n\nShow notes: https://gist.github.com/ericnormand/c8764fe72105bf178f858d8ebe405f20\n\nDiscord - Join if you want to watch us live or chat! https://discord.gg/hgxAyQaeuX\n\nFollow us on Twitter for updates - https://twitter.com/AproposClj\u200b",
+    "date": "20210922"
+  },
+  {
+    "vimeoId": "640675798",
+    "title": "Apropos October 27, 2021",
+    "description": "Panel: Mia, Ray, Mike, Eric\n\nDiscord - Join if you want to watch us live or chat! https://discord.gg/hgxAyQaeuX\n\nFollow us on Twitter for updates - https://twitter.com/AproposClj\u200b",
+    "date": "20211027"
+  },
+  {
+    "vimeoId": "650596859",
+    "title": "Apropos November 17, 2021",
+    "description": "Panel: Mia, Ray, Mike, Eric and special guest Jordan AKA Lambduhh\n\nDiscord - Join if you want to watch us live or chat! https://discord.gg/hGNnK8N\n\nFollow us on Twitter for updates - https://twitter.com/AproposClj\u200b",
+    "date": "20211117"
+  }
+]

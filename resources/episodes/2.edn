@@ -1,5 +1,5 @@
-{:title "Web site demo 2"
- :description "Show notes gist URL"
- :recording-date "1-Feb-2021"
- :video-id "foo-002"
- :hosts  "Eric, Mia, Mike and Ray"}
+{:title "Apropos Clojure #2 cljs 1.10",
+ :description "Discussion: the CLJS 1.10 release heats up",
+ :video-id "575903360",
+ :recording-date #inst "2018-03-08T06:00:00.000-00:00",
+ :hosts "Eric, Mia, Mike, and Ray"}

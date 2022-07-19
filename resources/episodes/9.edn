@@ -1,0 +1,6 @@
+{:title "Apropos Clojure #9 - Grrrr graalvm",
+ :description
+ "Discussion: GraalVM | Why Clojure? | The Lispy snake, Grace",
+ :video-id "575899563",
+ :recording-date #inst "2018-05-03T05:00:00.000-00:00",
+ :hosts "Eric, Mia, Mike, and Ray"}

@@ -1,5 +1,5 @@
-{:title "Web site demo 10"
- :description "Show notes gist URL"
- :recording-date "1-Feb-2021"
- :video-id "650596859"
- :hosts  "Eric, Mia, Mike and Ray"}
+{:title "Apropos Clojure #10 - shadow-cljs",
+ :description "shadow-cljs and add-lib plus a reptile demo",
+ :video-id "575897217",
+ :recording-date #inst "2018-05-15T05:00:00.000-00:00",
+ :hosts "Eric, Mia, Mike, and Ray"}

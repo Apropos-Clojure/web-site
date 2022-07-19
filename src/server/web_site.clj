@@ -26,6 +26,11 @@
     (some-> file-name io/resource io/as-file slurp read-string)
     (catch Exception _)))
 
+(defn parse-int [s]
+  (try
+    (Integer/parseInt s)
+    (catch Exception _)))
+
 (defn list-episode-ids
   [dir-name]
   (try
@@ -35,9 +40,9 @@
                        (-> f
                            (.getName)
                            (string/replace #"\.edn$" "")
-                           Integer/parseInt))))
+                           parse-int))))
              sort)
-    (catch Exception _)))
+    (catch Exception e (println e))))
 
 (defn save-episode-data
   [{:keys [number]}]
@@ -213,3 +218,7 @@
   (let [port (or (some-> (System/getenv "PORT") safe-port) 3000)]
     (start port)))
 
+(comment
+
+  (-main)
+  )
