@@ -2,20 +2,20 @@
   (:require
    [clojure.java.io :as io]
    [clojure.pprint :as pprint :refer [pprint]]
-    [muuntaja.core :as m]
-    [reitit.ring :as ring]
-    [reitit.coercion.malli :as rcm]
-    [reitit.ring.coercion :as coercion]
-    [reitit.ring.malli]
-    [reitit.spec :as rs]
-    [reitit.swagger :as swagger]
-    [reitit.swagger-ui :as swagger-ui]
-    [reitit.ring.middleware.muuntaja :as muuntaja]
-    [reitit.ring.middleware.parameters :as parameters]
-    [ring.adapter.jetty :as jetty]
-    [clojure.string :as string]
-    [hiccup.core :as h]
-    [hiccup.page :as page])
+   [muuntaja.core :as m]
+   [reitit.ring :as ring]
+   [reitit.coercion.malli :as rcm]
+   [reitit.ring.coercion :as coercion]
+   [reitit.ring.malli]
+   [reitit.spec :as rs]
+   [reitit.swagger :as swagger]
+   [reitit.swagger-ui :as swagger-ui]
+   [reitit.ring.middleware.muuntaja :as muuntaja]
+   [reitit.ring.middleware.parameters :as parameters]
+   [ring.adapter.jetty :as jetty]
+   [clojure.string :as string]
+   [hiccup.core :as h]
+   [hiccup.page :as page])
   (:import (java.io File)))
 
 (set! *warn-on-reflection* true)
@@ -124,32 +124,55 @@
        :allow "autoplay; fullscreen; picture-in-picture"
        :allowfullscreen true}])))
 
+(defn page [& content]
+  (page/html5
+   {:lang "en"}
+   [:head
+    [:title "Apropos"]
+    [:link {:rel "stylesheet"
+            :href "https://unpkg.com/sakura.css/css/sakura.css"
+            :type "text/css"}]
+    ]
+   [:body {:style "padding: 0 10px 0 10px"}
+    [:div {:style ""}
+     [:a {:href "/" :style ";vertical-align:middle"}
+      [:img {:src "/images/apropro.png" :alt "Apropro" :title "Apropro"
+             :style "width: 100px"}]]
+     [:a {:href "https://gist.github.com/apropos-cast"
+          :style "display:inline-block;margin:16px;vertical-align:middle"}
+      "Show notes"]
+     [:a {:href "https://discord.gg/jH75EnP"
+          :style "display:inline-block;margin:16px;vertical-align:middle"}
+      "Watch live"]
+     [:a {:href "https://twitter.com/AproposClj"
+          :style "display:inline-block;margin:16px;vertical-align:middle"}
+      "Follow for updates"]
+     [:a {:href "/about"
+          :style "display:inline-block;margin:16px;vertical-align:middle"}
+      "About us"]
+     [:div {:style "display:inline-block;margin:16px;vertical-align:middle"}
+      [:i "\"We record &lsquo;every other Tuesday&rsquo;.\""]]]
+    [:i {:style "text-align:center;display:block"} "Purveyors of fine parentheses."]
+    content]))
+
 (defn handle-homepage [_req]
   {:status 200
-   :body (page/html5
-          {:lang "en"}
-          [:head
-           [:title "Apropos"]
-           [:link {:rel "stylesheet"
-                   :href "https://unpkg.com/sakura.css/css/sakura.css"
-                   :type "text/css"}]
-           ]
-          [:body
-           [:img {:src "/images/apropro.png" :alt "Apropro" :title "Apropro"}]
-           [:h1 {:style "text-align: center"}
-            [:a {:href "/"} "Apropos"]]
-           [:h2 "Episodes"]
-           (let [episodes (reverse (list-episodes))
-                 recent (first episodes)
-                 others (rest episodes)]
-             [:div
-              [:h3 [:a {:href (str "/episode/" (:number recent))}
-                    (:title recent) " " (:recording-date recent)]
-               [:div
-                (vimeo-embed (:video-id recent))]]
-              (for [episode others]
-                [:h3 [:a {:href (str "/episode/" (:number episode))}
-                      (:title episode) " " (:recording-date episode)]])])])
+   :body
+   (page
+    [:h2 "Episodes"]
+    (let [episodes (reverse (list-episodes))
+          recent (first episodes)
+          others (rest episodes)]
+      [:div
+       [:h3 [:a {:href (str "/episode/" (:number recent))}
+             (:title recent)]
+        [:div
+         (vimeo-embed (:video-id recent))]]
+       (for [episode others]
+         [:div
+          [:h3 [:a {:href (str "/episode/" (:number episode))}
+                (:title episode)]]
+          [:p (:description episode)]])]))
    :headers {}})
 
 (defn handle-episode-page [req]
@@ -157,27 +180,28 @@
         episode-id (:episode-id (:path-params req))
         episode (episode-data {:number episode-id})]
     {:status 200
-     :body (page/html5
-            {:lang "en"}
-            [:head
-             [:title "Apropos"]
-             [:link {:rel "stylesheet"
-                   :href "https://unpkg.com/sakura.css/css/sakura.css"
-                   :type "text/css"}]]
-            [:body
-             [:img {:src "/images/apropro.png" :alt "Apropro" :title "Apropro"}]
-             [:h1 [:a {:href "/"} "Apropos"]]
-             [:h2 (:title episode)]
-             [:div (:recording-date episode)]
-             [:div (:hosts episode)]
-             [:div (:description episode)]
-             [:div (vimeo-embed (:video-id episode))]])
+     :body (page
+            [:h2 (:title episode)]
+            [:div (:recording-date episode)]
+            [:div (:hosts episode)]
+            [:div (:description episode)]
+            [:div (vimeo-embed (:video-id episode))])
      :headers {}}))
+
+(defn handle-about-page [req]
+  {:status 200
+   :body (page
+          "About us")
+   :headers {}})
 
 (def pages-route
   [["/" {:get {:summary "Homepage"
                :responses {200 {:body :string}}
                :handler handle-homepage}}]
+   ["/about" {:get {:summary "About page"
+                    :responses {200 {:body :string}}
+                    :handler handle-about-page}
+              }]
    ["/episode/:episode-id" {:get {:summary "Single episode"
                                   :responses {200 {:body :string}}
                                   :handler handle-episode-page}}]
@@ -196,12 +220,12 @@
 
 (def app
   (ring/ring-handler
-    (ring/router [pages-route swagger-route api-route] router-config)
-    (ring/routes (swagger-ui/create-swagger-ui-handler
-                   {:path   "/swagger"
-                    :config {:validatorUrl     nil
-                             :operationsSorter "alpha"}})
-                 (ring/create-default-handler))))
+   (ring/router [pages-route swagger-route api-route] router-config)
+   (ring/routes (swagger-ui/create-swagger-ui-handler
+                 {:path   "/swagger"
+                  :config {:validatorUrl     nil
+                           :operationsSorter "alpha"}})
+                (ring/create-default-handler))))
 
 (defn start
   [port]
