@@ -262,7 +262,7 @@
                            parameters/parameters-middleware
                            coercion/coerce-exceptions-middleware
                            coercion/coerce-request-middleware
-                           coercion/coerce-response-middleware]}})
+                           #_coercion/coerce-response-middleware]}})
 
 (def app
   (ring/ring-handler
