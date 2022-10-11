@@ -15,8 +15,10 @@
    [ring.adapter.jetty :as jetty]
    [clojure.string :as string]
    [hiccup.core :as h]
-   [hiccup.page :as page])
-  (:import (java.io File)))
+   [hiccup.page :as page]
+   [clojure.string :as str])
+  (:import (java.io File)
+           (java.time.format DateTimeFormatter)))
 
 (set! *warn-on-reflection* true)
 
@@ -132,7 +134,10 @@
     [:link {:rel "stylesheet"
             :href "https://unpkg.com/sakura.css/css/sakura.css"
             :type "text/css"}]
-    ]
+    [:style ".hidden { display: none; }"]
+    [:script {:src "https://cdn.jsdelivr.net/npm/scittle@latest/dist/scittle.js"}]
+    [:script {:type "application/x-scittle"
+              :src "/cljs/app.cljs"}]]
    [:body {:style "padding: 0 10px 0 10px"}
     [:div {:style ""}
      [:a {:href "/" :style ";vertical-align:middle"}
@@ -155,25 +160,65 @@
     [:i {:style "text-align:center;display:block"} "Purveyors of fine parentheses."]
     content]))
 
+(defn linkify [s]
+  (string/replace s #"(.*)(https://[^ )]*)"
+                  (fn [[_ text url]]
+                    (str "<a href=\""
+                         url
+                         "\">"
+                         (str/replace text #"[ \-:(]+$" "")
+                         "</a>"))))
+
+(defn pretty-description [d']
+  (let [d (-> d'
+              (or "")
+              (str/replace #"Panel:.*" "")
+              (str/replace #"(AproposClj[^ <]*)" "AproposClj")
+              str/trim
+              (str/split #"\n")
+              (->> (map linkify)
+                   (str/join "\n"))
+              (str/replace #"\n" "<br>"))]
+    ;; Div trick to see the state
+    [:div
+     [:div d]
+     #_  [:pre [:code (h/h d)]]
+     #_[:div (h/h (pr-str d))]
+     #_[:div d']]
+    ;;d
+    ))
+
+(defn panel-string [d]
+  (when-some [[_ panel] (re-find #"Panel:(.*)" d)]
+    panel))
+
 (defn handle-homepage [_req]
   {:status 200
    :body
    (page
     [:h2 "Episodes"]
+    [:input#search {:type :text}]
     (let [episodes (reverse (list-episodes))
           recent (first episodes)
           others (rest episodes)]
       [:div
-       [:h3 [:a {:href (str "/episode/" (:number recent))}
-             (:title recent)]
-        [:div
+       [:div.episode {:data-videoid (:video-id recent)}
+        [:h3 [:a {:href (str "/episode/" (:number recent))}
+              (:title recent)]]
+        [:p (pretty-description (:description recent))]
+        [:div.video
          (vimeo-embed (:video-id recent))]]
        (for [episode others]
-         [:div
+         [:div.episode {:data-videoid (:video-id episode)}
           [:h3 [:a {:href (str "/episode/" (:number episode))}
                 (:title episode)]]
-          [:p (:description episode)]])]))
+          [:p (pretty-description (:description episode))]
+          [:div.video]])]))
    :headers {}})
+
+(defn format-date [^java.util.Date inst]
+  (.format (DateTimeFormatter/ofPattern "dd MM yyyy")
+           (.toInstant inst)))
 
 (defn handle-episode-page [req]
   (let [_preq (with-out-str (pprint req))
@@ -182,9 +227,10 @@
     {:status 200
      :body (page
             [:h2 (:title episode)]
-            [:div (:recording-date episode)]
-            [:div (:hosts episode)]
-            [:div (:description episode)]
+            [:div (format-date (:recording-date episode))]
+            [:div (or (panel-string (:description episode))
+                      (:hosts episode))]
+            [:div (pretty-description (:description episode))]
             [:div (vimeo-embed (:video-id episode))])
      :headers {}}))
 
@@ -200,12 +246,12 @@
                :handler handle-homepage}}]
    ["/about" {:get {:summary "About page"
                     :responses {200 {:body :string}}
-                    :handler handle-about-page}
-              }]
+                    :handler handle-about-page}}]
    ["/episode/:episode-id" {:get {:summary "Single episode"
                                   :responses {200 {:body :string}}
                                   :handler handle-episode-page}}]
-   ["/images/*" (ring/create-resource-handler {:path "/"})]])
+   ["/images/*" (ring/create-resource-handler {:path "/"})]
+   ["/cljs/*" (ring/create-resource-handler {:path "/"})]])
 
 (def router-config
   {:validate rs/validate
