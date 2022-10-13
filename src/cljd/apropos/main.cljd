@@ -5,7 +5,8 @@
    ["dart:convert" :as convert]
    [cljd.flutter.alpha2 :as f]))
 
-
+;; Version 1 and 2 generate the same code but the 2nd one leverage the threading
+;; of f/widget where you can extract your last named parameter when there is no .child Widget
 #_(defn main []
   (m/runApp
     (m/MaterialApp
@@ -35,29 +36,29 @@
                                       (m/Text desc))))))
                   (m/CircularProgressIndicator)))))))
 
+;; Same as the above
 (defn main []
   (m/runApp
     (f/widget
       (m/MaterialApp
         .title "Welcome to Flutter"
         .theme (m/ThemeData .primarySwatch m/Colors.pink))
-      .home (m/Scaffold .appBar (m/AppBar .title (m/Text "Hello Apropos")))
+      .home (m/Scaffold
+              .appBar (m/AppBar
+                        .title (m/Text "Hello Apropos")))
+
       .body
       :let [uri (Uri/parse "https://apropos-web-site.herokuapp.com/api/episodes")]
       :watch [resp (http/get uri)]
-      :bind {:my-state {:user "baptiste"}}
-      :get [:my-state]
       (if resp
         (f/widget
           :let [episodes (-> ^http/Response resp .-body
                            convert/json.decode
                            (get "episodes"))]
-          (m/ListView.builder
-            .itemCount (count episodes)
-            .itemBuilder
-            (f/build [idx]
-              (m/ListTile
-                .title (m/Text (get-in episodes [idx "title"])))
-              .subtitle (when-some [desc (get-in episodes [idx "description"])]
-                          (m/Text desc)))))
+          (m/ListView.builder .itemCount (count episodes))
+          .itemBuilder
+          (f/build [idx]
+            (m/ListTile .title (m/Text (get-in episodes [idx "title"])))
+            .subtitle (when-some [desc (get-in episodes [idx "description"])]
+                        (m/Text desc))))
         (m/CircularProgressIndicator)))))
