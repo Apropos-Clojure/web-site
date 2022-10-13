@@ -1,0 +1,63 @@
+(ns apropos.main
+  (:require
+   ["package:flutter/material.dart" :as m]
+   ["package:http/http.dart" :as http]
+   ["dart:convert" :as convert]
+   [cljd.flutter.alpha2 :as f]))
+
+
+#_(defn main []
+  (m/runApp
+    (m/MaterialApp
+      .title "Welcome to Flutter"
+      .theme (m/ThemeData .primarySwatch m/Colors.pink)
+      .home (m/Scaffold
+              .appBar (m/AppBar
+                        .title (m/Text "Hello Apropos"))
+              .body
+              (f/widget
+                :let [uri (Uri/parse
+                            "https://apropos-web-site.herokuapp.com/api/episodes")]
+                :watch [resp (http/get uri)]
+                (if resp
+                  (f/widget
+                    :let [episodes (-> ^http/Response resp .-body
+                                     convert/json.decode
+                                     (get "episodes"))
+                          _ (dart:core/print episodes)]
+                    (m/ListView.builder
+                      .itemCount (count episodes)
+                      .itemBuilder
+                      (f/build [idx]
+                        (m/ListTile
+                          .title (m/Text (get-in episodes [idx "title"]))
+                          .subtitle (when-some [desc (get-in episodes [idx "description"])]
+                                      (m/Text desc))))))
+                  (m/CircularProgressIndicator)))))))
+
+(defn main []
+  (m/runApp
+    (f/widget
+      (m/MaterialApp
+        .title "Welcome to Flutter"
+        .theme (m/ThemeData .primarySwatch m/Colors.pink))
+      .home (m/Scaffold .appBar (m/AppBar .title (m/Text "Hello Apropos")))
+      .body
+      :let [uri (Uri/parse "https://apropos-web-site.herokuapp.com/api/episodes")]
+      :watch [resp (http/get uri)]
+      :bind {:my-state {:user "baptiste"}}
+      :get [:my-state]
+      (if resp
+        (f/widget
+          :let [episodes (-> ^http/Response resp .-body
+                           convert/json.decode
+                           (get "episodes"))]
+          (m/ListView.builder
+            .itemCount (count episodes)
+            .itemBuilder
+            (f/build [idx]
+              (m/ListTile
+                .title (m/Text (get-in episodes [idx "title"])))
+              .subtitle (when-some [desc (get-in episodes [idx "description"])]
+                          (m/Text desc)))))
+        (m/CircularProgressIndicator)))))
